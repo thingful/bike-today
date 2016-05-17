@@ -29,3 +29,6 @@ demo web application using Thingful API to demonstrate simple "search" &amp; "ge
 
 
 * show the result of calculation 
+
+### Known issues
+* Chrome has issue with requesting geolocation from local file, `python -m SimpleHTTPServer 8000` is a way around this issue
