@@ -1,8 +1,6 @@
 
 "use strict";
 
-// var x, lat, lon, object;
-
 
 var thingful = new Thingful();
 thingful.setKey("1234567890");
@@ -11,10 +9,17 @@ var bikeResult = null;
 var airQualityResult = null;
 var weatherResult = null;
 
+var lat, lon;
 
 
-function getBike(){
-	thingful.get('q=bike', function(data){
+
+
+
+
+function getData(){
+	getLocation();
+
+	thingful.get('q=bike&lat='+'lat='+lat+'long='+lon+'radius=500', function(data){
 		bikeResult = data;
 		// console.log(data); // we can do something with data here
 		allDataReceived();
@@ -109,7 +114,6 @@ function calculateValue(){
 
 
 
-
 // function setup(){
 // 	console.log("loading stuff");
 // 	x = document.getElementById("demo");
@@ -117,25 +121,29 @@ function calculateValue(){
 // 	console.log(object);
 // 	tf = new Thingful("1234567890");
 // 	console.log(tf);
-// }
+// 
 
 
-// function getLocation() {
-//     if (navigator.geolocation) {
-//         navigator.geolocation.getCurrentPosition(showPosition);
-//         lat = position.coords.latitude;
-//         lon = position.coords.longitude;
-//     } else { 
-//         x.innerHTML = "Geolocation is not supported by this browser.";
-//     }
-// }
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+    	console.log("Geolocation is not supported by this browser.");
+        // x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
 
-// function showPosition(position) {
-// 	// console.log(x);
-// 	console.log("lat = " + position.coords.latitude); // i can get this but the innerHTML doesn't work
-//     document.getElementById("demo").innerHTML = "Latitude: " + position.coords.latitude + 
-//     "<br>Longitude: " + position.coords.longitude;	
-// }
+function showPosition(position) {
+	// console.log(x);
+	lat = position.coords.latitude;
+    lon = position.coords.longitude;
+    console.log("lat = " + lat);
+    console.log("lon = " + lon);
+	// console.log("lat = " + position.coords.latitude); // i can get this but the innerHTML doesn't work
+ //    document.getElementById("demo").innerHTML = "Latitude: " + position.coords.latitude + 
+ //    "<br>Longitude: " + position.coords.longitude;	
+
+}
 
 // function myCallBack(param1){
 // 	console.log("param1 =");
