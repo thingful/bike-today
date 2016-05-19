@@ -17,9 +17,9 @@ jQuery(document).ready(function($) {
 
 	    if (navigator.geolocation) {
 	    	report += "Getting geolocation..."
-
+	    	console.log("Getting geolocation...");
 	    	// call getData once received geolocation
-	        navigator.geolocation.getCurrentPosition(getData);
+	        navigator.geolocation.getCurrentPosition(getData, showError);
 
 	    } else { 
 	    	report += "Geolocation is not supported by this browser..."
@@ -27,6 +27,28 @@ jQuery(document).ready(function($) {
 	    }
 
 	    content.html(report);
+	}
+
+	//error handling for location checking
+	function showError(error) {
+	    switch(error.code) {
+	        case error.PERMISSION_DENIED:
+	        	content.html("User denied the request for Geolocation.");
+	            console.log("User denied the request for Geolocation.");
+	            break;
+	        case error.POSITION_UNAVAILABLE:
+	        	content.html("Location information is unavailable.");
+	            console.log("Location information is unavailable.");
+	            break;
+	        case error.TIMEOUT:
+	        	content.html("The request to get user location timed out.");
+	            console.log("The request to get user location timed out.");
+	            break;
+	        case error.UNKNOWN_ERROR:
+	        	content.html("An unknown error occurred.");
+	            console.log("An unknown error occurred.");
+	            break;
+	    }
 	}
 
 	// Make GET requests to the Thingful API.
