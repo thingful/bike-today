@@ -1,6 +1,6 @@
 var Thingful = function(){
 	
-	this.query = function( parameters, callback ) {
+	this.get = function( parameters, callback ) {
 		var query = "http://api.thingful.net/things?" + parameters;
 		console.log("getting: " + parameters);
 		
