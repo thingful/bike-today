@@ -81,7 +81,7 @@ jQuery(document).ready(function($) {
 
 		logs += "Waiting for responses...";
 		$( "#content" ).find('.logs').append('<p>' + logs + '</p>');
-		$( "#content" ).find('.logs').append('<img id="loading-wheel" src="/images/loading-wheel.svg" />');
+		$( "#content" ).find('.logs').append('<img id="loading-wheel" src="http://thingful.github.io//images/loading-wheel.svg" />');
 
 		// show loading wheel
 		$('#loading-wheel ').fadeIn('slow');
@@ -106,9 +106,9 @@ jQuery(document).ready(function($) {
 	// Note that it is possible that Thingful returns cycling data unrelated
 	// to availability (which is what we are interested in). 
 	// It is recommended to always check values before using them.
-	function processValue(){
+	function processValue() {
 		$('#loading-wheel ').fadeOut('fast');
-		
+
 		var response = '';
 		var summary = '<h3>SUMMARY</h3>';
 
@@ -165,9 +165,3 @@ jQuery(document).ready(function($) {
 
 	$('button').on('click', getLocation);
 });
-
-
-
-
-
-
