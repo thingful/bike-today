@@ -4,7 +4,7 @@ var Thingful = function(){
 		var query = "https://api.thingful.net/things?" + parameters;
 		console.log("getting: " + parameters);
 		
-		// mske request to thingful
+		// make request to Thingful API
 		var jqxhr = $.get( query, function(data) {
 			callback(data);
 		})
