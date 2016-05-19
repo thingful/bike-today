@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-</head>
+	<head>
+		<meta charset="utf-8">
+		<title>Bike Today</title>
+		<link rel="stylesheet" href="css/main.css">
+	</head>
 
 
-<body onload = "getLocation()">
-<script src="js/jquery-2.2.3.js"></script>
-<script type="text/javascript" src="js/thingful.js"></script>
-<script type="text/javascript" src="js/functions.js"></script>
+	<body onload = "getLocation()">
+		<script src="js/jquery-2.2.3.js"></script>
+		<script type="text/javascript" src="js/thingful.js"></script>
+		<script type="text/javascript" src="js/functions.js"></script>
 
-<p>Should I cycle today?</p>
+		<div id="main">
+			<h1>Should I cycle today?</h1>
 
-<button onclick="getData()">tell me</button>
+			<button onclick="getData()">TELL ME</button>
 
+			<p id="content"></p>
+		</div>
+	</body>
 
-<p id="content"></p>
-
-
-</body>
 </html>
