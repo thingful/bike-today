@@ -156,7 +156,7 @@ jQuery(document).ready(function($) {
 		if (bikeToday) { 
 			response += "<div id='reponse-ok'><h2>It's a good day to cycle!</h2></div>";
 		} else {
-			response += "<div id='reponse-bad'><h2>It's not a good day to cycle</div>";
+			response += "<div id='reponse-bad'><h2>It's not a good day to cycle</h2></div>";
 		}
 
 		// display response

@@ -75,9 +75,9 @@ img#loading-wheel {
 }
 
 #reponse-bad {
-	font-weight: bolder;
-	color: red;
-	font-size: 24px;
+	width: 90%;
+    padding: 10px;
+    margin: 10px auto 0;
 	background-color: #F44336;
 }
 
