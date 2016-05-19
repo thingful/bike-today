@@ -1,0 +1,42 @@
+html {
+	background-color: #F0F0F0;
+	font-family: Helvetica, Arial, sans-serif;
+	color: #000;
+}
+
+h1 {
+	font-size: 30px;
+	margin-bottom: 20px;
+}
+
+#main {
+	position: relative;
+	width: 50%;
+	height: auto;
+	text-align: center;
+	margin: 200px auto 0;
+	padding: 5px;
+	flex-direction: column;
+	-webkit-justify-content : center;
+	-webkit-flex-direction: column;
+    justify-content: center;
+    flex-direction: column;
+	display: -webkit-flex;
+	display: flex;
+    background-color: #FFF;
+}
+
+button {
+	display: block;
+	width: 60%;
+	height: 30px;
+	background-color: #8BD42F;
+	border: none;
+	border-radius: 3px;
+	margin: 0 auto;
+}
+
+button:hover {
+	background-color: #49B600;
+	cursor: pointer;
+}
