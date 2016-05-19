@@ -65,6 +65,7 @@ function getData(position){
 		allDataReceived();
 	});
 
+	report += "Waiting for responses...<br>"
 	content.innerHTML = report;
 }
 
@@ -72,6 +73,8 @@ function getData(position){
 function allDataReceived(){ // everytime we receive data back, check if we got everything we need
 	if(bikeResult && airQualityResult && weatherResult){ // if we got everything we need, process the value
 		report += "All responses received <br><br>"
+		content.innerHTML = report;
+
 		console.log("All responses received");
 		console.log(bikeResult);
 		console.log(airQualityResult);
@@ -140,11 +143,11 @@ function processValue(){
 
 
 	if(bikeToday){ // then we display the result
-		report += "It's good day to cycle!!!";
-		console.log("It's good day to cycle!!!");
+		report += "It's a good day to cycle!!!";
+		console.log("It's a good day to cycle!!!");
 	}else{
-		report += "It's not good day to cycle";
-		console.log("It's not good day to cycle");
+		report += "It's not a good day to cycle";
+		console.log("It's not a good day to cycle");
 	}
 
 
