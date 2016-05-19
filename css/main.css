@@ -6,16 +6,44 @@ html {
 
 h1 {
 	font-size: 30px;
-	margin-bottom: 20px;
+	margin: 0 0 10px;
+}
+
+h2 {
+	font-weight: bolder;
+	color: #FFF;
+	font-size: 24px;
+}
+
+img#loading-wheel {
+	display: none;
+    -webkit-animation-name: rotate; 
+    -webkit-animation-duration: 2s; 
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: rotate; 
+    -moz-animation-duration: 2s; 
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+}
+@-webkit-keyframes rotate {
+    from {-webkit-transform: rotate(0deg);}
+    to {-webkit-transform: rotate(360deg);}
+}
+
+@-moz-keyframes rotate {
+    from {-moz-transform: rotate(0deg);}
+    to {-moz-transform: rotate(360deg);}
 }
 
 #main {
 	position: relative;
 	width: 50%;
+	min-height: 150px;
 	height: auto;
 	text-align: center;
 	margin: 200px auto 0;
-	padding: 5px;
+	padding: 25px;
 	flex-direction: column;
 	-webkit-justify-content : center;
 	-webkit-flex-direction: column;
@@ -24,20 +52,48 @@ h1 {
 	display: -webkit-flex;
 	display: flex;
     background-color: #FFF;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2)5
+}
+
+.logs {
+	font-size: 15px;
+	font-style: italic;
+}
+
+#summary, .logs {
+	margin: 10px auto 0;
+	background: #FAFAFA;
+    padding: 10px;
+    width: 90%;
+}
+
+#reponse-ok {
+	width: 90%;
+    padding: 10px;
+    margin: 10px auto 0;
+    background-color: #49B600;
+}
+
+#reponse-bad {
+	font-weight: bolder;
+	color: red;
+	font-size: 24px;
+	background-color: #F44336;
 }
 
 button {
 	display: block;
 	width: 60%;
-	height: 30px;
-	background-color: #8BD42F;
+	height: 40px;
+	background-color: #2FDFD4;
 	border: none;
 	border-radius: 3px;
-	margin: 0 auto;
+	margin: 10px auto 0;
+	font-size: 17px;
 }
 
 button:hover {
-	background-color: #49B600;
+	background-color: #00C1CA;
 	cursor: pointer;
 
 }
