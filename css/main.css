@@ -39,6 +39,7 @@ button {
 button:hover {
 	background-color: #49B600;
 	cursor: pointer;
+
 }
 
 @media only screen and (max-device-width: 600px) {
