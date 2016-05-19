@@ -17,7 +17,6 @@ var lat, lon;
 
 
 function getData(){
-	getLocation();
 
 	thingful.get('q=bike&lat='+'lat='+lat+'long='+lon+'radius=500', function(data){
 		bikeResult = data;
@@ -107,21 +106,10 @@ function calculateValue(){
 		console.log("it's not good day to cycle");
 	}
 
-	var x = document.getElementById("demo");
+	var x = document.getElementById("content");
 
 	x.innerHTML = report;
 }
-
-
-
-// function setup(){
-// 	console.log("loading stuff");
-// 	x = document.getElementById("demo");
-// 	object = JSON.parse('[1, 5, "false"]');
-// 	console.log(object);
-// 	tf = new Thingful("1234567890");
-// 	console.log(tf);
-// 
 
 
 function getLocation() {
@@ -134,20 +122,12 @@ function getLocation() {
 }
 
 function showPosition(position) {
-	// console.log(x);
 	lat = position.coords.latitude;
     lon = position.coords.longitude;
     console.log("lat = " + lat);
     console.log("lon = " + lon);
-	// console.log("lat = " + position.coords.latitude); // i can get this but the innerHTML doesn't work
- //    document.getElementById("demo").innerHTML = "Latitude: " + position.coords.latitude + 
- //    "<br>Longitude: " + position.coords.longitude;	
-
 }
 
-// function myCallBack(param1){
-// 	console.log("param1 =");
-// 	console.log(param1);
-// }
+
 
 
