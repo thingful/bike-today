@@ -35,3 +35,7 @@ demo web application using Thingful API to demonstrate simple "search" &amp; "ge
 * in terminal, go to the folder that store index.html
 * run `python -m SimpleHTTPServer 8000`
 * on Chrome, go to `http://localhost:8000/index.html`
+
+#### Mixed content on Chrome
+* Because github is HTTPS but thingful is HTTP, so it's mixed content
+* quick fix: In the address bar at the right end should be a 'shield' icon, you can click on that to run insecure content.
