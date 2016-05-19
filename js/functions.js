@@ -1,7 +1,6 @@
 
 "use strict";
 
-
 jQuery(document).ready(function($) {
 	var thingful = new Thingful();
 	var bikeResult = null;
@@ -9,14 +8,18 @@ jQuery(document).ready(function($) {
 	var weatherResult = null;
 	var lat, lon;
 	var content = $('#content');
-	var report = "";
+	var report = ""; // the final output that will be displayed
 
-	function getLocation() { // getting geolocation
+	// Find user geolocation
+	function getLocation() {
+
+		$('button').remove();
 
 	    if (navigator.geolocation) {
 	    	report += "Getting geolocation..."
-	    	console.log("Getting geolocation");
-	        navigator.geolocation.getCurrentPosition( getData ); //call getData once received geolocation
+
+	    	// call getData once received geolocation
+	        navigator.geolocation.getCurrentPosition(getData);
 
 	    } else { 
 	    	report += "Geolocation is not supported by this browser..."
@@ -26,22 +29,22 @@ jQuery(document).ready(function($) {
 	    content.html(report);
 	}
 
+	// Make GET requests to the Thingful API.
+	// In this case there will be 3 separate requests. One for bicycle
+	// availability, one for air quality data and one for weather data
 	function getData(position){
 
 		lat = position.coords.latitude;
 	    lon = position.coords.longitude;
-	    console.log("lat = " + lat);
-	    console.log("lon = " + lon);
 
 	    report += "done<br><br>"
 	    content.html(report);
 
-
-	    //then we make 3 separate requests, for bike, air quality and weather
+	    
 		report += "Requesting for bike <br>"
 		thingful.get('q=bike&lat='+lat+'long='+lon+'radius=500&sort=distance&limit=5', function(data){
 			bikeResult = data;
-			allDataReceived(); // everytime we receive data back, check if we got everything we need
+			allDataReceived();
 		});
 
 		report += "Requesting for air quality <br>"
@@ -56,12 +59,13 @@ jQuery(document).ready(function($) {
 			allDataReceived();
 		});
 
-		report += "Waiting for responses...<br>"
+		report += "Waiting for responses...<br>";
 		content.html(report);
 	}
 
-	function allDataReceived(){ // everytime we receive data back, check if we got everything we need
-		if(bikeResult && airQualityResult && weatherResult){ // if we got everything we need, process the value
+	// Ensure all the necessary data is available before processing the data
+	function allDataReceived(){
+		if (bikeResult && airQualityResult && weatherResult) {
 			report += "All responses received <br><br>"
 			content.html(report);
 
@@ -69,77 +73,64 @@ jQuery(document).ready(function($) {
 			console.log(bikeResult);
 			console.log(airQualityResult);
 			console.log(weatherResult);
+
 			content.html(report);
 			processValue();
+		} else {
+			return;
 		}
 
 	}
 
+	// Find the values that we want to process.
+	// because the result is sorted by distance, we just pick the first one. 
+	// Note that it is possible that Thingful returns cycling data unrelated
+	// to availability (which is what we are interested in). 
+	// It is recommended to always check values before using them.
 	function processValue(){
-		
-		// first we find the values that we want to process
-		// because the result is sorted by distance, we just pick the first one. 
-		// but you may want to double check if this is really what you are looking for
-
 		var bikeID = bikeResult.data[0].attributes.channels[0].id;
 		var bikeAvailable = bikeResult.data[0].attributes.channels[0].value;
-
-		console.log(bikeID + " = " + bikeAvailable);
 
 		var airQualityID = airQualityResult.data[0].attributes.channels[0].id;
 		var airQuality = airQualityResult.data[0].attributes.channels[0].value;
 
-		console.log(airQualityID + " = " + airQuality);
+		var temperatureID = weatherResult.data[0].attributes.channels[3].id;
+		var temperature = weatherResult.data[0].attributes.channels[3].value;
 
 
-		var tempuratureID = weatherResult.data[0].attributes.channels[3].id;
-		var tempurature = weatherResult.data[0].attributes.channels[3].value;
-
-		console.log(tempuratureID + " = " + tempurature);
-
-
-
-		// then we process those values using a very simple logic
-
+		// process the values returned from Thingful using a very simple logic
 		var bikeToday = true; // this is the answer, with default value to true
 
-		if(bikeAvailable == 0){ 
+		if (bikeAvailable == 0){ 
 			report += "There is no bike for you<br>";
-			console.log("There is no bike for you");
-			bikeToday = false; // make it false if conditions are not met
-		}else{
+			bikeToday = false; // return false if conditions are not met
+		} else {
 			report += "There are " + bikeAvailable + " bikes for you<br>";
-			console.log("There are " + bikeAvailable + " bikes for you");
 		}
 
-		if(airQuality < 50){ // this is just arbitary threshold for air quality index
+		// our arbitary threshold for air quality index
+		if (airQuality < 50) { 
 			bikeToday = false;
 			report += "Air quality is bad<br>";
-			console.log("Air quality is bad");
-		}else{
+		} else {
 			report += "Air quality is good: "+airQuality+"<br>";
-			console.log("Air quality is good");
 		}
 
-		if(tempurature < 10){ // this is also arbitary threshold for temperature
+		// our arbitary threshold for temperature
+		if (temperature < 10) { 
 			bikeToday = false;
-			report += "But it's too cold: "+tempurature+"<br><br>";
-			console.log("It's too cold");
-		}else{
-			report += "tempurature is nice:" + tempurature + "<br><br>";
-			console.log("tempurature is nice:" + tempurature);
+			report += "But it's too cold: "+temperature+"<br><br>";
+		} else {
+			report += "temperature is nice:" + temperature + "<br><br>";
 		}
 
-
-		if(bikeToday){ // then we display the result
+		// finally display the result
+		if (bikeToday) { 
 			report += "It's a good day to cycle!!!";
-			console.log("It's a good day to cycle!!!");
-		}else{
+		} else {
 			report += "It's not a good day to cycle";
-			console.log("It's not a good day to cycle");
 		}
 
-		$('button').remove();
 		content.html(report);
 	}
 
