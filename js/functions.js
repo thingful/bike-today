@@ -81,7 +81,7 @@ jQuery(document).ready(function($) {
 
 		logs += "Waiting for responses...";
 		$( "#content" ).find('.logs').append('<p>' + logs + '</p>');
-		$( "#content" ).find('.logs').append('<img id="loading-wheel" src="http://thingful.github.io//images/loading-wheel.svg" />');
+		$( "#content" ).find('.logs').append('<img id="loading-wheel" src="https://thingful.github.io/bike-today/images/loading-wheel.svg" />');
 
 		// show loading wheel
 		$('#loading-wheel ').fadeIn('slow');
