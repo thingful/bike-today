@@ -1,36 +1,27 @@
 
 "use strict";
 
-
 var thingful = new Thingful();
-thingful.setApiKey("1234567890");
-
 var bikeResult = null;
 var airQualityResult = null;
 var weatherResult = null;
-
 var lat, lon;
-
-
-
-
-
 
 function getData(){
 
-	thingful.get('q=bike&lat='+lat+'long='+lon+'radius=500&sort=distance&limit=5', function(data){
+	thingful.query('q=bike&lat='+lat+'long='+lon+'radius=500&sort=distance&limit=5', function(data){
 		bikeResult = data;
 		// console.log(data); // we can do something with data here
 		allDataReceived();
 	});
 
-	thingful.get('q=airquality&lat='+lat+'long='+lon+'radius=500&sort=distance&limit=5', function(data){
+	thingful.query('q=airquality&lat='+lat+'long='+lon+'radius=500&sort=distance&limit=5', function(data){
 		airQualityResult = data;
 		// console.log(data); // we can do something with data here
 		allDataReceived();
 	});
 
-	thingful.get('q=weather&lat='+lat+'long='+lon+'radius=500&sort=distance&limit=5', function(data){
+	thingful.query('q=weather&lat='+lat+'long='+lon+'radius=500&sort=distance&limit=5', function(data){
 		weatherResult = data;
 		// console.log(data); // we can do something with data here
 		allDataReceived();
@@ -106,10 +97,6 @@ function calculateValue(){
 		report += "it's not good day to cycle";
 		console.log("it's not good day to cycle");
 	}
-
-	var x = document.getElementById("content");
-
-	x.innerHTML = report;
 }
 
 

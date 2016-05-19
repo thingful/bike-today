@@ -1,27 +1,15 @@
-class Thingful{
+var Thingful = function(){
 	
-	get( something, callback ) {
-	var query = "http://api.thingful.net/things?" + something;
-	console.log("getting:  " + query);
-	
-	// mske request to thingful
-	var jqxhr = $.get( query, function(data) {
-		// console.log( "success" );
-	})
-		.done(function(data) {
+	this.query = function( parameters, callback ) {
+		var query = "http://api.thingful.net/things?" + parameters;
+		console.log("getting: " + parameters);
+		
+		// mske request to thingful
+		var jqxhr = $.get( query, function(data) {
 			callback(data);
-			// console.log(data);
-			console.log( "success" );
 		})
-
 		.fail(function() {
 			console.log( "error" );
-		})
-
-		.always(function() {
-			// console.log( "finished" );
 		});
-
-    }
-
+	}
 }
