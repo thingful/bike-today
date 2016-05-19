@@ -1,17 +1,10 @@
 class Thingful{
-
-	constructor() {
-		
-	}
-
-	setKey(apiKey){
-		this.apiKey = apiKey;
-		console.log("new key = " + this.apiKey);
-	}
 	
 	get( something, callback ) {
 	var query = "http://api.thingful.net/things?" + something;
 	console.log("getting:  " + query);
+	
+	// mske request to thingful
 	var jqxhr = $.get( query, function(data) {
 		// console.log( "success" );
 	})

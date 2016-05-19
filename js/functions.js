@@ -3,7 +3,7 @@
 
 
 var thingful = new Thingful();
-thingful.setKey("1234567890");
+thingful.setApiKey("1234567890");
 
 var bikeResult = null;
 var airQualityResult = null;
@@ -18,19 +18,19 @@ var lat, lon;
 
 function getData(){
 
-	thingful.get('q=bike&lat='+'lat='+lat+'long='+lon+'radius=500', function(data){
+	thingful.get('q=bike&lat='+lat+'long='+lon+'radius=500&sort=distance&limit=5', function(data){
 		bikeResult = data;
 		// console.log(data); // we can do something with data here
 		allDataReceived();
 	});
 
-	thingful.get('q=airquality', function(data){
+	thingful.get('q=airquality&lat='+lat+'long='+lon+'radius=500&sort=distance&limit=5', function(data){
 		airQualityResult = data;
 		// console.log(data); // we can do something with data here
 		allDataReceived();
 	});
 
-	thingful.get('q=weather', function(data){
+	thingful.get('q=weather&lat='+lat+'long='+lon+'radius=500&sort=distance&limit=5', function(data){
 		weatherResult = data;
 		// console.log(data); // we can do something with data here
 		allDataReceived();
@@ -70,6 +70,7 @@ function calculateValue(){
 	console.log(tempuratureID + " = " + tempurature);
 
 	var bikeToday = true;
+
 	var report = "";
 	if(bikeAvailable == 0){
 		report += "there is no bike for you<br>";
@@ -114,6 +115,7 @@ function calculateValue(){
 
 function getLocation() {
     if (navigator.geolocation) {
+    	console.log("getting geolocation");
         navigator.geolocation.getCurrentPosition(showPosition);
     } else { 
     	console.log("Geolocation is not supported by this browser.");
