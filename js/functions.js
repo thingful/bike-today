@@ -1,54 +1,10 @@
-
-"use strict";
-
 jQuery(document).ready(function($) {
 	var thingful = new Thingful();
 	var bikeResult = null;
 	var airQualityResult = null;
 	var weatherResult = null;
 	var lat, lon;
-	var errors; 
-
-	// Find user geolocation
-	function getLocation() {
-
-		$("button").remove();
-
-		if (navigator.geolocation) {
-			var logs = "Getting geolocation...";
-			
-			// call getData once received geolocation
-			navigator.geolocation.getCurrentPosition(getData, showError);
-
-		} else { 
-			errors += "Geolocation is not supported by this browser..."
-			console.log("Geolocation is not supported by this browser.");
-		}
-
-		$( "#content" ).append( '<div class="logs"><p>' + logs + '</p></div>' );
-	}
-
-	// handle errors when retrieving geolocation
-	function showError(error) {
-		switch(error.code) {
-			case error.PERMISSION_DENIED:
-				$('.errors').html("User denied the request for Geolocation.");
-				$('body').append(geolocationSettings());
-				break;
-			case error.POSITION_UNAVAILABLE:
-				$('.errors').html("Location information is unavailable.");
-				alert('Ooops! It seems there is no location information is unavailable.');
-				break;
-			case error.TIMEOUT:
-				$('.errors').html("The request to get user location timed out.");
-				alert('Ooops! The request is taking too long. Maybe because of a bad internet connection?');
-				break;
-			case error.UNKNOWN_ERROR:
-				$('.errors').html("An unknown error occurred.");
-				alert('Ooops! An unknown error happened. Please try again.');
-				break;
-		}
-	}
+	var errors;
 
 	// Make GET requests to the Thingful API.
 	// In this case there will be 3 separate requests. One for bicycle
@@ -57,7 +13,7 @@ jQuery(document).ready(function($) {
 
 		lat = position.coords.latitude;
 		lon = position.coords.longitude;
-		
+
 		var logs = "Requesting bike data near you<br>";
 		thingful.get("q=bike&lat=" + lat + "&long=" + lon + "&radius=500&sort=distance&limit=5", function(data){
 			bikeResult = data;
@@ -169,27 +125,19 @@ jQuery(document).ready(function($) {
 		$( "#content" ).append( '<div id="response">' + response + '</div>' );
 	}
 
-	// return formatted information about how to enable geolocation on 
-	// multiple browsers
-	function geolocationSettings() {
-		var info = '<div id="overlay"><div id="alert"><div id="info">' +
-		'<div id="close">X</div>' +
-		'You must enable Geolocation to allow this application to work. ' + 
-		'Click on one of the links below to find insturction about how to enable it.</div>' +
-		'<a href="https://support.google.com/chrome/answer/142065?hl=en-GB" target="_blank">Google Chrome settings</a>' +
-		'<a href="https://support.apple.com/en-gb/HT204690" target="_blank">Safari settings</a>' +
-		'<a href="https://www.mozilla.org/en-GB/firefox/geolocation/" target="_blank">Firefox settings</a>' +
-		'<a href="http://windows.microsoft.com/en-us/windows7/change-internet-explorer-9-privacy-settings" target="_blank">Internet Explorer</a>' +
-		'</div></div>';
+	// get geolocation and query the Thingful API
+	$('button').on('click', function() {
+		
+		$(this).hide();
 
-		return info;
-	}
+		$( "#content" ).append( '<div class="logs"><p>Getting geolocation...</p></div>' );
 
-	$('button').on('click', getLocation);
+		getLocation(getData);
+	});
 
 	// close dialog box
 	$('body').on('click', 'div#close', function() {
-		console.log('AAA');
 		$('#overlay').remove();
 	});
+
 });
