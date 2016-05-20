@@ -61,19 +61,19 @@ jQuery(document).ready(function($) {
 		lat = position.coords.latitude;
 	    lon = position.coords.longitude;
 	    
-		var logs = "Requesting for bike<br>"
+		var logs = "Requesting bike data near you<br>"
 		thingful.get('q=bike&lat='+lat+'long='+lon+'radius=500&sort=distance&limit=5', function(data){
 			bikeResult = data;
 			allDataReceived();
 		});
 
-		logs += "Requesting for air quality<br>"
+		logs += "Requesting air quality data near you<br>"
 		thingful.get('q=airquality&lat='+lat+'long='+lon+'radius=500&sort=distance&limit=5', function(data){
 			airQualityResult = data;
 			allDataReceived();
 		});
 
-		logs += "Requesting for weather<br><br>"
+		logs += "Requesting weather data near you<br><br>"
 		thingful.get('q=weather&lat='+lat+'long='+lon+'radius=500&sort=distance&limit=5', function(data){
 			weatherResult = data;
 			allDataReceived();
