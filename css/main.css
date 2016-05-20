@@ -36,6 +36,57 @@ img#loading-wheel {
     to {-moz-transform: rotate(360deg);}
 }
 
+#overlay {
+	background-color: rgba(0, 0, 0, 0.5);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	flex-direction: column;
+	-webkit-justify-content : center;
+	-webkit-flex-direction: column;
+    justify-content: center;
+    flex-direction: column;
+	display: -webkit-flex;
+	display: flex;
+}
+
+#alert {
+	width: 50%;
+	height: auto;
+	position: relative;
+	background-color: #FFF;
+	margin: 0 auto;
+	padding: 25px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+#alert #info {
+	margin: 10px 0 20px;
+}
+
+#alert a {
+	display: block;
+	text-decoration: none;
+	color: blue;
+	margin: 5px 0;
+}
+
+#alert #close {
+	float: right;
+    top: -44px;
+    position: relative;
+    right: -30px;
+	width: 30px;
+	height: 30px;
+	border-radius: 15px;
+	padding-top: 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+    background-color: #FFF;
+    text-align: center;
+}
+
 #main {
 	position: relative;
 	width: 50%;
@@ -52,7 +103,6 @@ img#loading-wheel {
 	display: -webkit-flex;
 	display: flex;
     background-color: #FFF;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2)5
 }
 
 .logs {
