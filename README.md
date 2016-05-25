@@ -1,41 +1,31 @@
 # bike-today
-demo web application using Thingful API to demonstrate simple "search" &amp; "get" API 
+Demo web application using simple [Thingful's search API](http://thingful.github.io/api-docs/)
 
 
-### logic of this app
+### Logic of this app
 
-* ask permission to get geolocation
-
-
-* get geolocation  
+* Ask permission to get geolocation
 
 
-* search for "bike", "weather" and "air quality" data around that geolocation, using [discovery API] (https://thingful.github.io/api-docs/) 
+* Get geolocation  
 
 
-* parse the result  
+* Search for "bike", "weather" and "air quality" data around that geolocation, using [search API] (https://thingful.github.io/api-docs/) 
 
 
-* choose the "suitable" things from the result  
+* Parse the results  
 
 
-* get the actual real-time data for those things using interchange-ish API  
+* Choose the "suitable" things from the results  
 
 
-* parse the result  
+* Use the return values to do simple calculation  
 
 
-* use the return values to do some simple calculation  
-
-
-* show the result of calculation 
+* Show the result of calculation 
 
 ### Known issues
 #### Chrome has issue with requesting geolocation from local file
 * in terminal, go to the folder that store index.html
 * run `python -m SimpleHTTPServer 8000`
 * on Chrome, go to `http://localhost:8000/index.html`
-
-#### Mixed content on Chrome
-* Because github is HTTPS but thingful is HTTP, so it's mixed content
-* quick fix: In the address bar at the right end should be a 'shield' icon, you can click on that to run insecure content.
