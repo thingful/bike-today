@@ -1,9 +1,9 @@
 jQuery(document).ready(function($) {
 
 	var thingful = new Thingful(); // simple thingful object
-	var bikeResult = null; 
-	var airQualityResult = null;
-	var weatherResult = null;
+	var bikeResult = null;  // variable to store the thingful response for bicycle
+	var airQualityResult = null; // variable to store the thingful response for air quality
+	var weatherResult = null; // variable to store the thingful response for weather
 	var lat, lon;
 	var errors;
 
@@ -16,6 +16,7 @@ jQuery(document).ready(function($) {
 		lon = position.coords.longitude;
 
 		var logs = "Requesting bike data near you<br>";
+		//we only limit radius for 500m and only ask for 5 things
 		thingful.get("q=bike&lat=" + lat + "&long=" + lon + "&radius=500&sort=distance&limit=5", function(data){
 			bikeResult = data;
 			allDataReceived();
@@ -127,7 +128,7 @@ jQuery(document).ready(function($) {
 		$( "#content" ).append( '<div id="response">' + response + '</div>' );
 	}
 
-	// get geolocation and query the Thingful API
+	//when button is pressed, get geolocation then query the Thingful API
 	$('button').on('click', function() {
 		
 		$(this).hide();
