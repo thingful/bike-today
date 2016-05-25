@@ -1,14 +1,15 @@
 jQuery(document).ready(function($) {
-	var thingful = new Thingful();
-	var bikeResult = null;
+
+	var thingful = new Thingful(); // simple thingful object
+	var bikeResult = null; 
 	var airQualityResult = null;
 	var weatherResult = null;
 	var lat, lon;
 	var errors;
 
 	// Make GET requests to the Thingful API.
-	// In this case there will be 3 separate requests. One for bicycle
-	// availability, one for air quality data and one for weather data
+	// In this case there will be 3 separate requests. 
+	// One for bicycle availability, one for air quality data and one for weather data
 	function getData(position){
 
 		lat = position.coords.latitude;
@@ -41,6 +42,7 @@ jQuery(document).ready(function($) {
 	}
 
 	// Ensure all the necessary data is available before processing the data
+	// This function is called everytime we received data
 	function allDataReceived(){
 
 		if (bikeResult && airQualityResult && weatherResult) {
@@ -50,7 +52,7 @@ jQuery(document).ready(function($) {
 			console.log(airQualityResult);
 			console.log(weatherResult);
 			
-			processValue();
+			processValue(); 
 		}
 	}
 
@@ -58,7 +60,7 @@ jQuery(document).ready(function($) {
 	// because the result is sorted by distance, we just pick the first one. 
 	// Note that it is possible that Thingful returns cycling data unrelated
 	// to availability (which is what we are interested in). 
-	// It is recommended to always check values before using them.
+	// It is recommended to always check channel's id before using it's value.
 	function processValue() {
 		$('#loading-wheel ').fadeOut('fast');
 
