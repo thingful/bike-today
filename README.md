@@ -1,5 +1,5 @@
 # bike-today
-Demo web application using simple [Thingful's search API](http://thingful.github.io/api-docs/)
+[Demo web application](http://thingful.github.io/bike-today/) using simple [Thingful's search API](http://thingful.github.io/api-docs/)
 
 
 ### Logic of this app

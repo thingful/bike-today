@@ -1,20 +1,22 @@
 jQuery(document).ready(function($) {
-	var thingful = new Thingful();
-	var bikeResult = null;
-	var airQualityResult = null;
-	var weatherResult = null;
+
+	var thingful = new Thingful(); // simple thingful object
+	var bikeResult = null;  // variable to store the thingful response for bicycle
+	var airQualityResult = null; // variable to store the thingful response for air quality
+	var weatherResult = null; // variable to store the thingful response for weather
 	var lat, lon;
 	var errors;
 
 	// Make GET requests to the Thingful API.
-	// In this case there will be 3 separate requests. One for bicycle
-	// availability, one for air quality data and one for weather data
+	// In this case there will be 3 separate requests. 
+	// One for bicycle availability, one for air quality data and one for weather data
 	function getData(position){
 
 		lat = position.coords.latitude;
 		lon = position.coords.longitude;
 
 		var logs = "Requesting bike data near you<br>";
+		//we only limit radius for 500m and only ask for 5 things
 		thingful.get("q=bike&lat=" + lat + "&long=" + lon + "&radius=500&sort=distance&limit=5", function(data){
 			bikeResult = data;
 			allDataReceived();
@@ -41,6 +43,7 @@ jQuery(document).ready(function($) {
 	}
 
 	// Ensure all the necessary data is available before processing the data
+	// This function is called everytime we received data
 	function allDataReceived(){
 
 		if (bikeResult && airQualityResult && weatherResult) {
@@ -50,7 +53,7 @@ jQuery(document).ready(function($) {
 			console.log(airQualityResult);
 			console.log(weatherResult);
 			
-			processValue();
+			processValue(); 
 		}
 	}
 
@@ -58,7 +61,7 @@ jQuery(document).ready(function($) {
 	// because the result is sorted by distance, we just pick the first one. 
 	// Note that it is possible that Thingful returns cycling data unrelated
 	// to availability (which is what we are interested in). 
-	// It is recommended to always check values before using them.
+	// It is recommended to always check channel's id before using it's value.
 	function processValue() {
 		$('#loading-wheel ').fadeOut('fast');
 
@@ -125,7 +128,7 @@ jQuery(document).ready(function($) {
 		$( "#content" ).append( '<div id="response">' + response + '</div>' );
 	}
 
-	// get geolocation and query the Thingful API
+	//when button is pressed, get geolocation then query the Thingful API
 	$('button').on('click', function() {
 		
 		$(this).hide();
