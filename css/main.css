@@ -147,6 +147,19 @@ button:hover {
 
 }
 
+#footnote {
+	  color: #FFF;
+    position: fixed;
+    background-color: #2FDFD4;
+    height: 24px;
+    width: 100%;
+    bottom: 0;
+    text-align: right;
+    left: 0;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
 @media only screen and (max-device-width: 600px) {
 	#main {
 		width: 85%;
