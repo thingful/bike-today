@@ -17,19 +17,19 @@ jQuery(document).ready(function($) {
 
 		var logs = "Requesting bike data near you<br>";
 		//we only limit radius for 500m and only ask for 5 things
-		thingful.get("q=bike&lat=" + lat + "&long=" + lon + "&radius=500&sort=distance&limit=5", function(data){
+		thingful.get("q=bike&geo-lat=" + lat + "&geo-long=" + lon + "&geo-radius=500&sort=distance&limit=5", function(data){
 			bikeResult = data;
 			allDataReceived();
 		});
 
 		logs += "Requesting air quality data near you<br>";
-		thingful.get("q=airquality&lat=" + lat + "&long=" + lon + "&radius=500&sort=distance&limit=5", function(data){
+		thingful.get("q=airquality&geo-lat=" + lat + "&geo-long=" + lon + "&geo-radius=500&sort=distance&limit=5", function(data){
 			airQualityResult = data;
 			allDataReceived();
 		});
 
 		logs += "Requesting weather data near you<br><br>";
-		thingful.get("q=weather&lat="+ lat + "&long=" + lon + "radius=500&sort=distance&limit=5", function(data){
+		thingful.get("q=weather&geo-lat="+ lat + "&geo-long=" + lon + "&geo-radius=500&sort=distance&limit=5", function(data){
 			weatherResult = data;
 			allDataReceived();
 		});
