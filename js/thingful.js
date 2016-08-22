@@ -8,7 +8,7 @@ var Thingful = function(){
 		console.log("getting: " + parameters);
 		
 		// make request to Thingful API
-		var jqxhr = $.get( query, function(data) {
+		var jqxhr = $.getJSON( query, function(data) {
 			callback(data);
 		})
 		.fail(function() {
