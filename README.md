@@ -1,6 +1,8 @@
 # bike-today
 [Demo web application](http://thingful.github.io/bike-today/) using simple [Thingful's search API](http://thingful.github.io/api-docs/)
 
+This project is licensed under the terms of the MIT license.
+
 
 ### Logic of this app
 
