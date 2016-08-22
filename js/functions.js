@@ -101,17 +101,25 @@ jQuery(document).ready(function($) {
 		// our arbitary threshold for air quality index
 		if (airQuality < 50) { 
 			bikeToday = false;
-			summary += "<p>Air quality is bad</p>";
+			summary += "<p>Air quality is bad: " + airQuality +"</p>";
 		} else {
-			summary += "<p>Air quality is good: "+ airQuality +"</p>";
+			summary += "<p>Air quality is good: " + airQuality +"</p>";
 		}
 
 		// our arbitary threshold for temperature
 		if (temperature < 10) { 
 			bikeToday = false;
-			summary += "<p>But it's too cold: "+ temperature + " " + tempUnit + "</p>";
+			if(tempUnit != null){
+				summary += "<p>But it's too cold: "+ temperature + " " + tempUnit + "</p>";
+			}else{
+				summary += "<p>But it's too cold: "+ temperature + "</p>";
+			}
 		} else {
-			summary += "<p>Temperature is nice: " + temperature + " " + tempUnit + "</p>";
+			if(tempUnit != null){
+				summary += "<p>Temperature is nice: " + temperature + " " + tempUnit + "</p>";
+			}else{
+				summary += "<p>Temperature is nice: " + temperature + "</p>";
+			}
 		}
 
 		// display summary
