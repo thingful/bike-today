@@ -71,18 +71,34 @@ jQuery(document).ready(function($) {
 		// ensure data array is defined and extract data
 		bikeAvailable = 0;
 		if (bikeResult.data != undefined) {
-			bikeAvailable = bikeResult.data[0].attributes.channels[0].value;
+			for (i = 0; i < bikeResult.data[0].attributes.channels.length; i++) { 
+				//check channel's id before using it's value.
+				if(isBikeAvailableChannel( bikeResult.data[0].attributes.channels[i].id )){
+					bikeAvailable = bikeResult.data[0].attributes.channels[i].value;
+				}
+			}
+			
 		}
 
 		airQuality = 0;
 		if ( airQualityResult.data != undefined) {
-			airQuality = airQualityResult.data[0].attributes.channels[0].value;
+			for (i = 0; i < airQualityResult.data[0].attributes.channels.length; i++) { 
+				//check channel's id before using it's value.
+				if(isAirQualityChannel( airQualityResult.data[0].attributes.channels[i].id )){
+					airQuality = airQualityResult.data[0].attributes.channels[i].value;
+				}
+			}
 		}
 
 		temperature = 0;
 		if (weatherResult.data != undefined) {
-			temperature = weatherResult.data[0].attributes.channels[0].value;
-			tempUnit = weatherResult.data[0].attributes.channels[0].units;
+			for (i = 0; i < weatherResult.data[0].attributes.channels.length; i++) { 
+				//check channel's id before using it's value.
+				if(isTemperatureChannel( weatherResult.data[0].attributes.channels[i].id )){
+					temperature = weatherResult.data[0].attributes.channels[i].value;
+					tempUnit = weatherResult.data[0].attributes.channels[i].units;
+				}
+			}
 		}
 
 		// process the values returned from Thingful using a very simple logic
@@ -147,5 +163,37 @@ jQuery(document).ready(function($) {
 	$('body').on('click', 'div#close', function() {
 		$('#overlay').remove();
 	});
+
+	function isBikeAvailableChannel(channelID){
+		var possibleBikeChannelIDs = ["bike", "bikes", "availability", "available"];
+		for (j = 0; j < possibleBikeChannelIDs.length; j++) { 
+			if(channelID.toUpperCase() == possibleBikeChannelIDs[j].toUpperCase()){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	function isAirQualityChannel(channelID){
+		var possibleAirQualityChannelIDs = ["airquality", "airqualityindex", "air quality", "air quality index"];
+		for (j = 0; j < possibleAirQualityChannelIDs.length; j++) { 
+			if(channelID.toUpperCase() == possibleAirQualityChannelIDs[j].toUpperCase()){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	function isTemperatureChannel(channelID){
+		var possibleTemperatureChannelIDs = ["temp", "temperature"];
+		for (j = 0; j < possibleTemperatureChannelIDs.length; j++) { 
+			if(channelID.toUpperCase() == possibleTemperatureChannelIDs[j].toUpperCase()){
+				return true;
+			}
+		}
+		return false;
+	}
+
+
 
 });
