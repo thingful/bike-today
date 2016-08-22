@@ -59,33 +59,30 @@ jQuery(document).ready(function($) {
 
 	// Find the values that we want to process.
 	// because the result is sorted by distance, we just pick the first one. 
-	// Note that it is possible that Thingful returns cycling data unrelated
-	// to availability (which is what we are interested in). 
-	// It is recommended to always check channel's id before using it's value.
+	// Note that it is possible that Thingful returns data unrelated to what we are interested in. 
+	// So it is recommended to always check channel's id before using it's value.
 	function processValue() {
 		$('#loading-wheel ').fadeOut('fast');
 
 		var response = "";
 		var summary = "<h3>SUMMARY</h3>";
+		var bikeAvailable, airQuality, temperature, tempUnit;
 
 		// ensure data array is defined and extract data
+		bikeAvailable = 0;
 		if (bikeResult.data != undefined) {
-			var bikeAvailable = bikeResult.data[0].attributes.channels[0].value;
-		} else {
-			bikeAvailable = 0;
+			bikeAvailable = bikeResult.data[0].attributes.channels[0].value;
 		}
 
+		airQuality = 0;
 		if ( airQualityResult.data != undefined) {
-			var airQuality = airQualityResult.data[0].attributes.channels[0].value;
-		} else {
-			airQuality = 0;
+			airQuality = airQualityResult.data[0].attributes.channels[0].value;
 		}
 
+		temperature = 0;
 		if (weatherResult.data != undefined) {
-			var temperature = weatherResult.data[0].attributes.channels[0].value;
-			var tempUnit = weatherResult.data[0].attributes.channels[0].units;
-		} else {
-			temperature = 0;
+			temperature = weatherResult.data[0].attributes.channels[0].value;
+			tempUnit = weatherResult.data[0].attributes.channels[0].units;
 		}
 
 		// process the values returned from Thingful using a very simple logic
